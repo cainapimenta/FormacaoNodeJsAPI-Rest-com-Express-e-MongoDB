@@ -1,13 +1,18 @@
 {
-  "name": "01_formacaonodejsapi-rest-com-express-e-mongodb",
-  "version": "1.0.0",
-  "description": "Node.js: criando uma API Rest com Express e MongoDB",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "01_formacaonodejsapi-rest-com-express-e-mongodb",
+	"version": "1.0.0",
+	"description": "Node.js: criando uma API Rest com Express e MongoDB",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon src/server.js",
+		"test": "jest"
+	},
+	"keywords": [],
+	"author": "Cainã Pimenta",
+	"license": "ISC",
+	"dependencies": {
+		"nodemon": "^3.0.1"
+	}
 }
