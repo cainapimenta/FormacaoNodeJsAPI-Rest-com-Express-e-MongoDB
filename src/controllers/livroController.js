@@ -4,10 +4,8 @@ import livro from "../models/Livro.js";
 class LivroController{
 
     static async getAll(req, res) {
-        const querys = req.query;
-
         try {
-            const entites = await livro.find(querys);
+            const entites = await livro.find({});
             res.status(200).json(entites);
         } catch (error) {
             res
@@ -66,10 +64,10 @@ class LivroController{
     }
 
     static async getByParams(req, res){
-        const editora = req.query.editora;
+        const queries = req.query;
 
         try {
-            const entites = await livro.find({ editora: editora });
+            const entites = await livro.find(queries);
             res.status(200).json(entites);
         } catch (error) {
             res
