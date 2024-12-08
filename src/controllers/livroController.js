@@ -4,9 +4,11 @@ import livro from "../models/Livro.js";
 class LivroController{
 
     static async getAll(req, res) {
+        const querys = req.query;
+
         try {
-            const listaLivros = await livro.find({});
-            res.status(200).json(listaLivros);
+            const entites = await livro.find(querys);
+            res.status(200).json(entites);
         } catch (error) {
             res
                 .status(500)
@@ -60,6 +62,19 @@ class LivroController{
         } catch (error) {
             res.status(500)
                 .json({ message: `[Falha ao deletar o livro] ${error.message}`})
+        }
+    }
+
+    static async getByParams(req, res){
+        const editora = req.query.editora;
+
+        try {
+            const entites = await livro.find({ editora: editora });
+            res.status(200).json(entites);
+        } catch (error) {
+            res
+                .status(500)
+                .json({ message: `${error.message} - falha na requisição` });
         }
     }
 };
