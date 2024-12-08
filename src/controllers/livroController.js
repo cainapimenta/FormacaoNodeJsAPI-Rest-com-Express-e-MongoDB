@@ -5,7 +5,7 @@ class LivroController{
 
     static async getAll(req, res) {
         try {
-            const entites = await livro.find({});
+            const entites = await livro.find({}).populate("autor").exec();
             res.status(200).json(entites);
         } catch (error) {
             res
@@ -28,14 +28,8 @@ class LivroController{
         const body = req.body;
 
         try {
-            const entityAutor = await autor.findById(body.autor);
-            const entity = {
-                ...body,
-                autor: { ...entityAutor._doc }
-            };
-
-            const novoLivro = await livro.create(entity);
-            res.status(201).json(novoLivro);
+            const entity = await livro.create(body);
+            res.status(201).json(entity);
         } catch (error) {
             res.status(500)
                 .json({ message: `${error.message} - falha ao cadastrar livro` });
