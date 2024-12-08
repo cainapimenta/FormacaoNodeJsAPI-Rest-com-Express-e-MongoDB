@@ -1,3 +1,4 @@
+import { autor } from "../models/Autor.js";
 import livro from "../models/Livro.js";
 
 class LivroController{
@@ -24,8 +25,16 @@ class LivroController{
     }
 
     static async post(req, res){
+        const body = req.body;
+
         try {
-            const novoLivro = await livro.create(req.body);
+            const entityAutor = await autor.findById(body.autor);
+            const entity = {
+                ...body,
+                autor: { ...entityAutor._doc }
+            };
+
+            const novoLivro = await livro.create(entity);
             res.status(201).json(novoLivro);
         } catch (error) {
             res.status(500)
