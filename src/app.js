@@ -53,4 +53,15 @@ app.put("/livros/:id", (req, res) => {
     }
 });
 
+app.delete("/livros/:id", (req, res) => {
+    const index = buscarLivro(req.params.id);
+
+    if(index === -1)
+        res.status(404).send();
+    else {
+        livros.splice(index, 1);
+        res.status(204).send();
+    }
+});
+
 export default app;
