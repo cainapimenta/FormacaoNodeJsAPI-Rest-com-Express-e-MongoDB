@@ -1,8 +1,7 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 async function connectarDatabase() {
-    mongoose.connect("mongodb+srv://admin:B1admin%40@cluster0.tyrdo.mongodb.net/livraria?retryWrites=true&w=majority&appName=Cluster0");
-
+    mongoose.connect(process.env.DB_CONNECTION_STRING);
     return mongoose.connection;
 }
 
